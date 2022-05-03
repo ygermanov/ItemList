@@ -1,0 +1,933 @@
+﻿<Window x:Class="ItemList.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ItemList"
+        mc:Ignorable="d" 
+        Title="BIS List" Height="480" Width="1102" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize"
+        Background="Black">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Menu Grid.Row="0">
+            <MenuItem Header="File">
+                <MenuItem Header="Add">
+                    <MenuItem Header="Raid" Click="Add_Raid"/>
+                    <MenuItem Header="Boss" Click="Add_Boss"/>
+                </MenuItem>
+                <MenuItem Header="Remove">
+                    <MenuItem Header="Raid" Click="Remove_Raid"/>
+                    <MenuItem Header="Boss" Click="Remove_Boss"/>
+                </MenuItem>
+                <Separator/>
+                <MenuItem Header="Exit" Click="Exit_Click"/>
+            </MenuItem>
+            <MenuItem Header="Edit">
+                <MenuItem Header="Rename:">
+                    <MenuItem Header="Raid" Click="Rename_Raid"/>
+                    <MenuItem Header="Boss" Click="Rename_Boss"/>
+                    <MenuItem Header="Item"/>
+                </MenuItem>
+                <Separator/>
+                <MenuItem Header="Delete DB">
+                    <MenuItem Header="Delete Players"/>
+                    <MenuItem Header="Delete Items"/>
+                    <MenuItem Header="Delete BISLists"/>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="Help">
+                <MenuItem Header="Instructions"/>
+                <MenuItem Header="About"/>
+            </MenuItem>
+        </Menu>
+        <TabControl Grid.Row="1" Background="black" BorderThickness="0">
+            <TabItem Header="Main" >
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="200"/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="10"/>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="10"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <TextBlock Text="Warlock" Background="MediumPurple" HorizontalAlignment="Stretch" TextAlignment="Center"
+                        VerticalAlignment="Stretch" Grid.Column="1" Grid.Row="0"
+                        TextWrapping="Wrap" />
+                    <TextBlock Text="Paladin" Background="LightPink" HorizontalAlignment="Stretch" TextAlignment="Center"
+                        VerticalAlignment="Stretch" Grid.Column="2" Grid.Row="0"
+                        TextWrapping="Wrap" />
+                    <TextBlock Text="Priest" Background="White" HorizontalAlignment="Stretch" TextAlignment="Center"
+                        VerticalAlignment="Stretch" Grid.Column="3" Grid.Row="0"
+                        TextWrapping="Wrap" />
+                    <TextBlock Text="Mage" Background="DeepSkyBlue" HorizontalAlignment="Stretch" TextAlignment="Center"
+                        VerticalAlignment="Stretch" Grid.Column="4" Grid.Row="0"
+                        TextWrapping="Wrap" />
+                    <TextBlock Text="Warrior" Background="SaddleBrown" HorizontalAlignment="Stretch" TextAlignment="Center"
+                        VerticalAlignment="Stretch" Grid.Column="5" Grid.Row="0"
+                        TextWrapping="Wrap" />
+                    <TextBlock Text="Shaman" Background="Blue" HorizontalAlignment="Stretch" TextAlignment="Center"
+                        VerticalAlignment="Stretch" Grid.Column="6" Grid.Row="0"
+                        TextWrapping="Wrap" />
+                    <TextBlock Text="Hunter" Background="Green" HorizontalAlignment="Stretch" TextAlignment="Center"
+                        VerticalAlignment="Stretch" Grid.Column="7" Grid.Row="0"
+                        TextWrapping="Wrap" />
+                    <TextBlock Text="Rouge" Background="Yellow" HorizontalAlignment="Stretch" TextAlignment="Center"
+                        VerticalAlignment="Stretch" Grid.Column="8" Grid.Row="0"
+                        TextWrapping="Wrap" />
+                    <TextBlock Text="Druid" Background="Orange" HorizontalAlignment="Stretch" TextAlignment="Center"
+                        VerticalAlignment="Stretch" Grid.Column="9" Grid.Row="0"
+                        TextWrapping="Wrap" />
+                    
+                    <ListBox x:Name="WarlockList" Grid.Column="1" Grid.Row="1" BorderThickness="0"
+                        ScrollViewer.VerticalScrollBarVisibility="Auto" Background="black"
+                        SelectionChanged="Player_SelectionChange">
+                        <ListBox.ItemBindingGroup>
+                            <BindingGroup/>
+                        </ListBox.ItemBindingGroup>
+                        <ListBox.BindingGroup>
+                            <BindingGroup/>
+                        </ListBox.BindingGroup>
+                        <ListBox.GroupStyle>
+                            <GroupStyle/>
+                        </ListBox.GroupStyle>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding playerName}"/>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                        <ListBox.ItemContainerStyle>
+                            <Style TargetType="{x:Type ListBoxItem}">
+
+                                <Setter Property="Background" Value="{Binding playerColor}"/>
+                                <Setter Property="BorderThickness" Value="1"/>
+                                <Setter Property="BorderBrush" Value="black"/>
+                            </Style>
+                        </ListBox.ItemContainerStyle>
+                    </ListBox>
+                    <ListBox x:Name="PaladinList" Grid.Column="2" Grid.Row="1" BorderThickness="0"
+                        ScrollViewer.VerticalScrollBarVisibility="Auto" Background="black"
+                        SelectionChanged="Player_SelectionChange">
+                        <ListBox.ItemBindingGroup>
+                            <BindingGroup/>
+                        </ListBox.ItemBindingGroup>
+                        <ListBox.BindingGroup>
+                            <BindingGroup/>
+                        </ListBox.BindingGroup>
+                        <ListBox.GroupStyle>
+                            <GroupStyle/>
+                        </ListBox.GroupStyle>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding playerName}"/>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                        <ListBox.ItemContainerStyle>
+                            <Style TargetType="{x:Type ListBoxItem}">
+                                <Setter Property="Background" Value="{Binding playerColor}"/>
+                                <Setter Property="BorderThickness" Value="1"/>
+                                <Setter Property="BorderBrush" Value="black"/>
+                            </Style>
+                        </ListBox.ItemContainerStyle>
+                    </ListBox>
+                    <ListBox x:Name="PriestList" Grid.Column="3" Grid.Row="1" BorderThickness="0"
+                        ScrollViewer.VerticalScrollBarVisibility="Auto" Background="black"
+                        SelectionChanged="Player_SelectionChange">
+                        <ListBox.ItemBindingGroup>
+                            <BindingGroup/>
+                        </ListBox.ItemBindingGroup>
+                        <ListBox.BindingGroup>
+                            <BindingGroup/>
+                        </ListBox.BindingGroup>
+                        <ListBox.GroupStyle>
+                            <GroupStyle/>
+                        </ListBox.GroupStyle>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding playerName}"/>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                        <ListBox.ItemContainerStyle>
+                            <Style TargetType="{x:Type ListBoxItem}">
+                                <Setter Property="Background" Value="{Binding playerColor}"/>
+                                <Setter Property="BorderThickness" Value="1"/>
+                                <Setter Property="BorderBrush" Value="black"/>
+                            </Style>
+                        </ListBox.ItemContainerStyle>
+                    </ListBox>
+                    <ListBox x:Name="MageList" Grid.Column="4" Grid.Row="1" BorderThickness="0"
+                        ScrollViewer.VerticalScrollBarVisibility="Auto" Background="black"
+                        SelectionChanged="Player_SelectionChange">
+                        <ListBox.ItemBindingGroup>
+                            <BindingGroup/>
+                        </ListBox.ItemBindingGroup>
+                        <ListBox.BindingGroup>
+                            <BindingGroup/>
+                        </ListBox.BindingGroup>
+                        <ListBox.GroupStyle>
+                            <GroupStyle/>
+                        </ListBox.GroupStyle>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding playerName}"/>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                        <ListBox.ItemContainerStyle>
+                            <Style TargetType="{x:Type ListBoxItem}">
+                                <Setter Property="Background" Value="{Binding playerColor}"/>
+                                <Setter Property="BorderThickness" Value="1"/>
+                                <Setter Property="BorderBrush" Value="black"/>
+                            </Style>
+                        </ListBox.ItemContainerStyle>
+                    </ListBox>
+                    <ListBox x:Name="WarriorList" Grid.Column="5" Grid.Row="1" BorderThickness="0"
+                        ScrollViewer.VerticalScrollBarVisibility="Auto" Background="black"
+                        SelectionChanged="Player_SelectionChange">
+                        <ListBox.ItemBindingGroup>
+                            <BindingGroup/>
+                        </ListBox.ItemBindingGroup>
+                        <ListBox.BindingGroup>
+                            <BindingGroup/>
+                        </ListBox.BindingGroup>
+                        <ListBox.GroupStyle>
+                            <GroupStyle/>
+                        </ListBox.GroupStyle>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding playerName}"/>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                        <ListBox.ItemContainerStyle>
+                            <Style TargetType="{x:Type ListBoxItem}">
+                                <Setter Property="Background" Value="{Binding playerColor}"/>
+                                <Setter Property="BorderThickness" Value="1"/>
+                                <Setter Property="BorderBrush" Value="black"/>
+                            </Style>
+                        </ListBox.ItemContainerStyle>
+                    </ListBox>
+                    <ListBox x:Name="ShamanList" Grid.Column="6" Grid.Row="1" BorderThickness="0"
+                        ScrollViewer.VerticalScrollBarVisibility="Auto" Background="black"
+                        SelectionChanged="Player_SelectionChange">
+                        <ListBox.ItemBindingGroup>
+                            <BindingGroup/>
+                        </ListBox.ItemBindingGroup>
+                        <ListBox.BindingGroup>
+                            <BindingGroup/>
+                        </ListBox.BindingGroup>
+                        <ListBox.GroupStyle>
+                            <GroupStyle/>
+                        </ListBox.GroupStyle>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding playerName}"/>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                        <ListBox.ItemContainerStyle>
+                            <Style TargetType="{x:Type ListBoxItem}">
+                                <Setter Property="Background" Value="{Binding playerColor}"/>
+                                <Setter Property="BorderThickness" Value="1"/>
+                                <Setter Property="BorderBrush" Value="black"/>
+                            </Style>
+                        </ListBox.ItemContainerStyle>
+                    </ListBox>
+                    <ListBox x:Name="HunterList" Grid.Column="7" Grid.Row="1" BorderThickness="0"
+                        ScrollViewer.VerticalScrollBarVisibility="Auto" Background="black"
+                        SelectionChanged="Player_SelectionChange">
+                        <ListBox.ItemBindingGroup>
+                            <BindingGroup/>
+                        </ListBox.ItemBindingGroup>
+                        <ListBox.BindingGroup>
+                            <BindingGroup/>
+                        </ListBox.BindingGroup>
+                        <ListBox.GroupStyle>
+                            <GroupStyle/>
+                        </ListBox.GroupStyle>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding playerName}"/>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                        <ListBox.ItemContainerStyle>
+                            <Style TargetType="{x:Type ListBoxItem}">
+                                <Setter Property="Background" Value="{Binding playerColor}"/>
+                                <Setter Property="BorderThickness" Value="1"/>
+                                <Setter Property="BorderBrush" Value="black"/>
+                            </Style>
+                        </ListBox.ItemContainerStyle>
+                    </ListBox>
+                    <ListBox x:Name="RougeList" Grid.Column="8" Grid.Row="1" BorderThickness="0"
+                        ScrollViewer.VerticalScrollBarVisibility="Auto" Background="black"
+                        SelectionChanged="Player_SelectionChange"> 
+                        <ListBox.ItemBindingGroup>
+                            <BindingGroup/>
+                        </ListBox.ItemBindingGroup>
+                        <ListBox.BindingGroup>
+                            <BindingGroup/>
+                        </ListBox.BindingGroup>
+                        <ListBox.GroupStyle>
+                            <GroupStyle/>
+                        </ListBox.GroupStyle>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding playerName}"/>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                        <ListBox.ItemContainerStyle>
+                            <Style TargetType="{x:Type ListBoxItem}">
+                                <Setter Property="Background" Value="{Binding playerColor}"/>
+                                <Setter Property="BorderThickness" Value="1"/>
+                                <Setter Property="BorderBrush" Value="black"/>
+                            </Style>
+                        </ListBox.ItemContainerStyle>
+                    </ListBox>
+                    <ListBox x:Name="DruidList" Grid.Column="9" Grid.Row="1" BorderThickness="0"
+                        ScrollViewer.VerticalScrollBarVisibility="Auto" Background="black"
+                        SelectionChanged="Player_SelectionChange">
+                        <ListBox.ItemBindingGroup>
+                            <BindingGroup/>
+                        </ListBox.ItemBindingGroup>
+                        <ListBox.BindingGroup>
+                            <BindingGroup/>
+                        </ListBox.BindingGroup>
+                        <ListBox.GroupStyle>
+                            <GroupStyle/>
+                        </ListBox.GroupStyle>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding playerName}"/>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                        <ListBox.ItemContainerStyle>
+                            <Style TargetType="{x:Type ListBoxItem}">
+                                <Setter Property="Background" Value="{Binding playerColor}"/>
+                                <Setter Property="BorderThickness" Value="1"/>
+                                <Setter Property="BorderBrush" Value="black"/>
+                            </Style>
+                        </ListBox.ItemContainerStyle>
+                    </ListBox>
+
+                    <WrapPanel Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Orientation="Vertical" >
+                        <TextBlock Text="Raid" Foreground="White" MinWidth="200"/>
+                        <ComboBox x:Name="raid"  SelectionChanged="raidSelect_SelectionChange"/>
+                        <TextBlock Text="Boss" Foreground="White" MinWidth="200"/>
+                        <ComboBox x:Name="boss" IsEnabled="False" SelectionChanged="bossSelect_SelectionChange"/>
+                        <TextBlock Text="Item" Foreground="White" MinWidth="200"/>
+                        <ComboBox x:Name="ItemForAsignment" IsEnabled="False" SelectionChanged="itemOwned_SelectionChange"/>
+                    </WrapPanel>
+
+                    <DataGrid x:Name="OwnedItems" Grid.Row="2" Grid.RowSpan="2" Grid.Column="4" Grid.ColumnSpan="3" MaxHeight="140"
+                              ScrollViewer.VerticalScrollBarVisibility="Visible"
+                              ScrollViewer.HorizontalScrollBarVisibility="Hidden" SelectionMode="Single"
+                              IsReadOnly="True" GridLinesVisibility="Horizontal"
+                              AutoGenerateColumns="False" d:LayoutOverrides="Width, Height" Background="{x:Null}">
+                        <DataGrid.Columns>
+                            <DataGridTemplateColumn Header="Player Name" Width="120" >
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding playerName}" Background="{Binding classColor}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTextColumn Header="Item Owned ?" Binding="{Binding owned}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+
+                    <TextBlock x:Name="classPlayer" Text="" Width="200" HorizontalAlignment="Center" 
+                        VerticalAlignment="Stretch" TextAlignment="Center" Grid.Row="0" Grid.Column="11" 
+                        TextWrapping="Wrap"/>
+
+                    <ListView x:Name="view" Grid.Row="1" Grid.Column="11" Grid.RowSpan="5" BorderThickness="0" ScrollViewer.CanContentScroll="True" 
+                              Background="Black">
+                        <ListBox.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Style.Triggers>
+                                    <Trigger Property="IsSelected" Value="True" >
+                                        <Setter Property="FontWeight" Value="Bold" />
+                                        <Setter Property="Background" Value="Transparent" />
+                                        <Setter Property="Foreground" Value="Black" />
+                                    </Trigger>
+                                </Style.Triggers>
+                                <Style.Resources>
+                                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent"/>
+                                </Style.Resources>
+                            </Style>
+                        </ListBox.ItemContainerStyle>
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Top"/>
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
+                        <ListView.ItemTemplate >
+                            <DataTemplate >
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="100"/>
+                                        <ColumnDefinition Width="200"/>
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="Head :  " TextAlignment="Right" Foreground="White" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch" Margin="0,0,0,4"/>
+                                    <TextBox x:Name="head" Foreground="{Binding HeadColor}" Text="{Binding Path=HeadName, Mode=OneWay}" Grid.Row="0" Grid.Column="1" IsReadOnly="true" HorizontalAlignment="Stretch" Margin="0,0,0,2">
+                                        <TextBox.ToolTip>
+                                            <ToolTip Placement="Bottom">
+                                                <ToolTip.Template>
+                                                    <ControlTemplate>
+                                                        <StackPanel>
+                                                            <Image Height="Auto" Width="Auto" Source="{Binding Path=HeadImage, Mode=OneWay}"/>
+                                                        </StackPanel>
+                                                    </ControlTemplate>
+                                                </ToolTip.Template>
+                                            </ToolTip>
+                                        </TextBox.ToolTip>
+                                    </TextBox>
+                                    <TextBlock Text="Neck :  " TextAlignment="Right" Grid.Row="1" Foreground="White" Grid.Column="0" HorizontalAlignment="Stretch" Margin="0,0,0,4"/>
+                                    <TextBox x:Name="Neck" Foreground="{Binding NeckColor}" Text="{Binding Path=NeckName, Mode=OneWay}" Grid.Row="1" Grid.Column="1" IsReadOnly="true" HorizontalAlignment="Stretch" Margin="0,0,0,2">
+                                        <TextBox.ToolTip>
+                                            <ToolTip Placement="Bottom">
+                                                <ToolTip.Template>
+                                                    <ControlTemplate>
+                                                        <StackPanel>
+                                                            <Image Height="Auto" Width="Auto" Source="{Binding Path=NeckImage, Mode=OneWay}"/>
+                                                        </StackPanel>
+                                                    </ControlTemplate>
+                                                </ToolTip.Template>
+                                            </ToolTip>
+                                        </TextBox.ToolTip>
+                                    </TextBox>
+                                    <TextBlock Text="Shoulders :  " TextAlignment="Right" Grid.Row="2" Foreground="White" Grid.Column="0" HorizontalAlignment="Stretch" Margin="0,0,0,4"/>
+                                    <TextBox x:Name="Shoulders" Foreground="{Binding ShoulderColor}" Text="{Binding Path=ShoulderName, Mode=OneWay}" Grid.Row="2" Grid.Column="1" IsReadOnly="true" HorizontalAlignment="Stretch" Margin="0,0,0,2">
+                                        <TextBox.ToolTip>
+                                            <ToolTip Placement="Bottom">
+                                                <ToolTip.Template>
+                                                    <ControlTemplate>
+                                                        <StackPanel>
+                                                            <Image Height="Auto" Width="Auto" Source="{Binding Path=ShoulderImage, Mode=OneWay}"/>
+                                                        </StackPanel>
+                                                    </ControlTemplate>
+                                                </ToolTip.Template>
+                                            </ToolTip>
+                                        </TextBox.ToolTip>
+                                    </TextBox>
+                                    <TextBlock Text="Chest :  " TextAlignment="Right" Grid.Row="3" Foreground="White" Grid.Column="0" HorizontalAlignment="Stretch" Margin="0,0,0,4"/>
+                                    <TextBox x:Name="Chest" Foreground="{Binding ChestColor}" Text="{Binding ChestName, Mode=OneWay}" Grid.Row="3" Grid.Column="1" IsReadOnly="true" HorizontalAlignment="Stretch" Margin="0,0,0,2">
+                                        <TextBox.ToolTip>
+                                            <ToolTip Placement="Bottom">
+                                                <ToolTip.Template>
+                                                    <ControlTemplate>
+                                                        <StackPanel>
+                                                            <Image Height="Auto" Width="Auto" Source="{Binding Path=ChestImage, Mode=OneWay}"/>
+                                                        </StackPanel>
+                                                    </ControlTemplate>
+                                                </ToolTip.Template>
+                                            </ToolTip>
+                                        </TextBox.ToolTip>
+                                    </TextBox>
+                                    <TextBlock Text="Back :  " TextAlignment="Right" Grid.Row="4" Foreground="White" Grid.Column="0" HorizontalAlignment="Stretch" Margin="0,0,0,4"/>
+                                    <TextBox x:Name="Back" Foreground="{Binding BackColor}" Text="{Binding Path=BackName, Mode=OneWay}" Grid.Row="4" Grid.Column="1" IsReadOnly="true" HorizontalAlignment="Stretch" Margin="0,0,0,2">
+                                        <TextBox.ToolTip>
+                                            <ToolTip Placement="Bottom">
+                                                <ToolTip.Template>
+                                                    <ControlTemplate>
+                                                        <StackPanel>
+                                                            <Image Height="Auto" Width="Auto" Source="{Binding Path=BackImage, Mode=OneWay}"/>
+                                                        </StackPanel>
+                                                    </ControlTemplate>
+                                                </ToolTip.Template>
+                                            </ToolTip>
+                                        </TextBox.ToolTip>
+                                    </TextBox>
+                                    <TextBlock Text="Wrist :  " TextAlignment="Right" Grid.Row="5" Foreground="White" Grid.Column="0" HorizontalAlignment="Stretch" Margin="0,0,0,4"/>
+                                    <TextBox x:Name="Wrist" Foreground="{Binding WristColor}" Text="{Binding Path=WristName, Mode=OneWay}" Grid.Row="5" Grid.Column="1" IsReadOnly="true" HorizontalAlignment="Stretch" Margin="0,0,0,2">
+                                        <TextBox.ToolTip>
+                                            <ToolTip Placement="Bottom">
+                                                <ToolTip.Template>
+                                                    <ControlTemplate>
+                                                        <StackPanel>
+                                                            <Image Height="Auto" Width="Auto" Source="{Binding Path=WristImage, Mode=OneWay}"/>
+                                                        </StackPanel>
+                                                    </ControlTemplate>
+                                                </ToolTip.Template>
+                                            </ToolTip>
+                                        </TextBox.ToolTip>
+                                    </TextBox>
+                                    <TextBlock Text="Gloves :  " TextAlignment="Right" Grid.Row="6" Foreground="White" Grid.Column="0" HorizontalAlignment="Stretch" Margin="0,0,0,4"/>
+                                    <TextBox x:Name="Gloves" Foreground="{Binding GlovesColor}" Text="{Binding Path=GlovesName, Mode=OneWay}" Grid.Row="6" Grid.Column="1" IsReadOnly="true" HorizontalAlignment="Stretch" Margin="0,0,0,2">
+                                        <TextBox.ToolTip>
+                                            <ToolTip Placement="Bottom">
+                                                <ToolTip.Template>
+                                                    <ControlTemplate>
+                                                        <StackPanel>
+                                                            <Image Height="Auto" Width="Auto" Source="{Binding Path=GlovesImage, Mode=OneWay}"/>
+                                                        </StackPanel>
+                                                    </ControlTemplate>
+                                                </ToolTip.Template>
+                                            </ToolTip>
+                                        </TextBox.ToolTip>
+                                    </TextBox>
+                                    <TextBlock Text="Belt :  " TextAlignment="Right" Grid.Row="7" Foreground="White" Grid.Column="0" HorizontalAlignment="Stretch" Margin="0,0,0,4"/>
+                                    <TextBox x:Name="Belt" Foreground="{Binding BeltColor}" Text="{Binding Path=BeltName, Mode=OneWay}" Grid.Row="7" Grid.Column="1" IsReadOnly="true" HorizontalAlignment="Stretch" Margin="0,0,0,2">
+                                        <TextBox.ToolTip>
+                                            <ToolTip Placement="Bottom">
+                                                <ToolTip.Template>
+                                                    <ControlTemplate>
+                                                        <StackPanel>
+                                                            <Image Height="Auto" Width="Auto" Source="{Binding Path=BeltImage, Mode=OneWay}"/>
+                                                        </StackPanel>
+                                                    </ControlTemplate>
+                                                </ToolTip.Template>
+                                            </ToolTip>
+                                        </TextBox.ToolTip>
+                                    </TextBox>
+                                    <TextBlock Text="Leggs :  " TextAlignment="Right" Grid.Row="8" Foreground="White" Grid.Column="0" HorizontalAlignment="Stretch" Margin="0,0,0,4"/>
+                                    <TextBox x:Name="Leggs" Foreground="{Binding LeggsColor}" Text="{Binding Path=LeggsName, Mode=OneWay}" Grid.Row="8" Grid.Column="1" IsReadOnly="true" HorizontalAlignment="Stretch" Margin="0,0,0,2">
+                                        <TextBox.ToolTip>
+                                            <ToolTip Placement="Bottom">
+                                                <ToolTip.Template>
+                                                    <ControlTemplate>
+                                                        <StackPanel>
+                                                            <Image Height="Auto" Width="Auto" Source="{Binding Path=LeggsImage, Mode=OneWay}"/>
+                                                        </StackPanel>
+                                                    </ControlTemplate>
+                                                </ToolTip.Template>
+                                            </ToolTip>
+                                        </TextBox.ToolTip>
+                                    </TextBox>
+                                    <TextBlock Text="Feet :  " TextAlignment="Right" Grid.Row="9" Foreground="White" Grid.Column="0" HorizontalAlignment="Stretch" Margin="0,0,0,4"/>
+                                    <TextBox x:Name="Feet" Foreground="{Binding FeetColor}" Text="{Binding Path=FeetName, Mode=OneWay}" Grid.Row="9" Grid.Column="1" IsReadOnly="true" HorizontalAlignment="Stretch" Margin="0,0,0,2">
+                                        <TextBox.ToolTip>
+                                            <ToolTip Placement="Bottom">
+                                                <ToolTip.Template>
+                                                    <ControlTemplate>
+                                                        <StackPanel>
+                                                            <Image Height="Auto" Width="Auto" Source="{Binding Path=FeetImage, Mode=OneWay}"/>
+                                                        </StackPanel>
+                                                    </ControlTemplate>
+                                                </ToolTip.Template>
+                                            </ToolTip>
+                                        </TextBox.ToolTip>
+                                    </TextBox>
+                                    <TextBlock Text="Ring slot 1 :  " TextAlignment="Right" Grid.Row="10" Foreground="White" Grid.Column="0" HorizontalAlignment="Stretch" Margin="0,0,0,4"/>
+                                    <TextBox x:Name="Ring1" Foreground="{Binding RingOneColor}" Text="{Binding Path=RingOneName, Mode=OneWay}" Grid.Row="10" Grid.Column="1" IsReadOnly="true" HorizontalAlignment="Stretch" Margin="0,0,0,2">
+                                        <TextBox.ToolTip>
+                                            <ToolTip Placement="Bottom">
+                                                <ToolTip.Template>
+                                                    <ControlTemplate>
+                                                        <StackPanel>
+                                                            <Image Height="Auto" Width="Auto" Source="{Binding Path=RingOneImage, Mode=OneWay}"/>
+                                                        </StackPanel>
+                                                    </ControlTemplate>
+                                                </ToolTip.Template>
+                                            </ToolTip>
+                                        </TextBox.ToolTip>
+                                    </TextBox>
+                                    <TextBlock Text="Ring slot 2 :  " TextAlignment="Right" Grid.Row="11" Foreground="White" Grid.Column="0" HorizontalAlignment="Stretch" Margin="0,0,0,4"/>
+                                    <TextBox x:Name="Ring2" Foreground="{Binding RingTwoColor}" Text="{Binding Path=RingTwoName, Mode=OneWay}" Grid.Row="11" Grid.Column="1" IsReadOnly="true" HorizontalAlignment="Stretch" Margin="0,0,0,2">
+                                        <TextBox.ToolTip>
+                                            <ToolTip Placement="Bottom">
+                                                <ToolTip.Template>
+                                                    <ControlTemplate>
+                                                        <StackPanel>
+                                                            <Image Height="Auto" Width="Auto" Source="{Binding Path=RingTwoImage, Mode=OneWay}"/>
+                                                        </StackPanel>
+                                                    </ControlTemplate>
+                                                </ToolTip.Template>
+                                            </ToolTip>
+                                        </TextBox.ToolTip>
+                                    </TextBox>
+                                    <TextBlock Text="Trinket slot 1 :  " TextAlignment="Right" Grid.Row="12" Foreground="White" Grid.Column="0" HorizontalAlignment="Stretch" Margin="0,0,0,4"/>
+                                    <TextBox x:Name="Trinket1" Foreground="{Binding TrinketOneColor}" Text="{Binding Path=TrinketOneName, Mode=OneWay}" Grid.Row="12" Grid.Column="1" IsReadOnly="true" HorizontalAlignment="Stretch" Margin="0,0,0,2">
+                                        <TextBox.ToolTip>
+                                            <ToolTip Placement="Bottom">
+                                                <ToolTip.Template>
+                                                    <ControlTemplate>
+                                                        <StackPanel>
+                                                            <Image Height="Auto" Width="Auto" Source="{Binding Path=TrinketOneImage, Mode=OneWay}"/>
+                                                        </StackPanel>
+                                                    </ControlTemplate>
+                                                </ToolTip.Template>
+                                            </ToolTip>
+                                        </TextBox.ToolTip>
+                                    </TextBox>
+                                    <TextBlock Text="Trinket slot 2 :  " TextAlignment="Right" Grid.Row="13" Foreground="White" Grid.Column="0" HorizontalAlignment="Stretch" Margin="0,0,0,4"/>
+                                    <TextBox x:Name="Trinket2" Foreground="{Binding TrinketTwoColor}" Text="{Binding Path=TrinketTwoName, Mode=OneWay}" Grid.Row="13" Grid.Column="1" IsReadOnly="true" HorizontalAlignment="Stretch" Margin="0,0,0,2">
+                                        <TextBox.ToolTip>
+                                            <ToolTip Placement="Bottom">
+                                                <ToolTip.Template>
+                                                    <ControlTemplate>
+                                                        <StackPanel>
+                                                            <Image Height="Auto" Width="Auto" Source="{Binding Path=TrinketTwoImage, Mode=OneWay}"/>
+                                                        </StackPanel>
+                                                    </ControlTemplate>
+                                                </ToolTip.Template>
+                                            </ToolTip>
+                                        </TextBox.ToolTip>
+                                    </TextBox>
+                                    <TextBlock Text="Main hand :  " TextAlignment="Right" Grid.Row="14" Foreground="White" Grid.Column="0" HorizontalAlignment="Stretch" Margin="0,0,0,4"/>
+                                    <TextBox x:Name="MainHand" Foreground="{Binding WeaponColor}" Text="{Binding Path=MainHandName, Mode=OneWay}" Grid.Row="14" Grid.Column="1" IsReadOnly="true" HorizontalAlignment="Stretch" Margin="0,0,0,2">
+                                        <TextBox.ToolTip>
+                                            <ToolTip Placement="Bottom">
+                                                <ToolTip.Template>
+                                                    <ControlTemplate>
+                                                        <StackPanel>
+                                                            <Image Height="Auto" Width="Auto" Source="{Binding Path=MainHandImage, Mode=OneWay}"/>
+                                                        </StackPanel>
+                                                    </ControlTemplate>
+                                                </ToolTip.Template>
+                                            </ToolTip>
+                                        </TextBox.ToolTip>
+                                    </TextBox>
+                                    <TextBlock Text="Off hand :  " TextAlignment="Right" Grid.Row="15" Foreground="White" Grid.Column="0" HorizontalAlignment="Stretch" Margin="0,0,0,4"/>
+                                    <TextBox x:Name="OffHand" Foreground="{Binding OffHandColor}" Text="{Binding Path=OffHandName, Mode=OneWay}" Grid.Row="15" Grid.Column="1" IsReadOnly="true" HorizontalAlignment="Stretch" Margin="0,0,0,2">
+                                        <TextBox.ToolTip>
+                                            <ToolTip Placement="Bottom">
+                                                <ToolTip.Template>
+                                                    <ControlTemplate>
+                                                        <StackPanel>
+                                                            <Image Height="Auto" Width="Auto" Source="{Binding Path=OffHandImage, Mode=OneWay}"/>
+                                                        </StackPanel>
+                                                    </ControlTemplate>
+                                                </ToolTip.Template>
+                                            </ToolTip>
+                                        </TextBox.ToolTip>
+                                    </TextBox>
+                                    <TextBlock Text="Throwable :  " TextAlignment="Right" Grid.Row="16" Foreground="White" Grid.Column="0" HorizontalAlignment="Stretch" Margin="0,0,0,4"/>
+                                    <TextBox x:Name="Throwable" Foreground="{Binding ThrowableColor}" Text="{Binding Path=ThrowableName, Mode=OneWay}" Grid.Row="16" Grid.Column="1" IsReadOnly="true" HorizontalAlignment="Stretch" Margin="0,0,0,2">
+                                        <TextBox.ToolTip>
+                                            <ToolTip Placement="Bottom">
+                                                <ToolTip.Template>
+                                                    <ControlTemplate>
+                                                        <StackPanel>
+                                                            <Image Height="Auto" Width="Auto" Source="{Binding Path=ThrowableImage, Mode=OneWay}"/>
+                                                        </StackPanel>
+                                                    </ControlTemplate>
+                                                </ToolTip.Template>
+                                            </ToolTip>
+                                        </TextBox.ToolTip>
+                                    </TextBox>
+
+                                    
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <WrapPanel x:Name="ownedItems" IsEnabled="False" Grid.Row="1" Grid.RowSpan="17" Grid.Column="12" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Vertical">
+                        <CheckBox Margin="0,0,0,5"/>
+                        <CheckBox Margin="0,0,0,5"/>
+                        <CheckBox Margin="0,0,0,5"/>
+                        <CheckBox Margin="0,0,0,5"/>
+                        <CheckBox Margin="0,0,0,5"/>
+                        <CheckBox Margin="0,0,0,5"/>
+                        <CheckBox Margin="0,0,0,5"/>
+                        <CheckBox Margin="0,0,0,5"/>
+                        <CheckBox Margin="0,0,0,5"/>
+                        <CheckBox Margin="0,0,0,5"/>
+                        <CheckBox Margin="0,0,0,5"/>
+                        <CheckBox Margin="0,0,0,5"/>
+                        <CheckBox Margin="0,0,0,5"/>
+                        <CheckBox Margin="0,0,0,5"/>
+                        <CheckBox Margin="0,0,0,5"/>
+                        <CheckBox Margin="0,0,0,5"/>
+                        <CheckBox Margin="0,0,0,5"/>
+                    </WrapPanel>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Edit BIS List">
+                <Grid Margin="4">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition/>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="150"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock x:Name="playerBIS" Text="" Width="200" HorizontalAlignment="Center" 
+                        VerticalAlignment="Stretch" TextAlignment="Center" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2"
+                        TextWrapping="Wrap"/>
+
+                    <Button x:Name="unlockList" Content="Unlock" Grid.Row="1" Grid.Column="4" Width="75" HorizontalAlignment="Left" Click="UpdateBISList"/>
+                    <Button x:Name="cancelList" Content="Cancel" Visibility="Collapsed" Grid.Row="1" Grid.Column="4" Width="75" HorizontalAlignment="Right" Click="CancelBISList"/>
+
+                    
+                    <WrapPanel Grid.Row="3" Grid.RowSpan="9" Grid.Column="0" Orientation="Vertical" >
+                        <TextBlock Text="Head :  " Foreground="White" MinWidth="150" TextAlignment="Right" Margin="0,0,0,8"/>
+                        <TextBlock Text="Neck :  " Foreground="White" TextAlignment="Right" Margin="0,0,0,8"/>
+                        <TextBlock Text="Shoulder :  " Foreground="White" TextAlignment="Right" Margin="0,0,0,8"/>
+                        <TextBlock Text="Chest :  " Foreground="White" TextAlignment="Right" Margin="0,0,0,8"/>
+                        <TextBlock Text="Back :  " Foreground="White" TextAlignment="Right" Margin="0,0,0,8"/>
+                        <TextBlock Text="Wrist :  " Foreground="White" TextAlignment="Right" Margin="0,0,0,8"/>
+                        <TextBlock Text="Gloves :  " Foreground="White" TextAlignment="Right" Margin="0,0,0,8"/>
+                        <TextBlock Text="Main Hand :  " Foreground="White" TextAlignment="Right" Margin="0,0,0,8"/>
+                        <TextBlock Text="Off Hand :  " Foreground="White" TextAlignment="Right" Margin="0,0,0,8"/>
+                    </WrapPanel>
+
+                    <WrapPanel x:Name="rollOneOfBISItems" Grid.Row="3" Grid.RowSpan="9" Grid.Column="1" Orientation="Vertical" IsEnabled="false">
+                        <ComboBox x:Name="HeadUpdate" SelectedIndex="0" IsReadOnly="true" MinWidth="250" Margin="0,0,0,2"/>
+                        <ComboBox x:Name="NeckUpdate" SelectedIndex="0" IsReadOnly="true" Margin="0,0,0,2"/>
+                        <ComboBox x:Name="ShoulderUpdate" SelectedIndex="0"  IsReadOnly="true" Margin="0,0,0,2"/>
+                        <ComboBox x:Name="ChestUpdate" SelectedIndex="0"  IsReadOnly="true" Margin="0,0,0,2"/>
+                        <ComboBox x:Name="BackUpdate" SelectedIndex="0"  IsReadOnly="true" Margin="0,0,0,2"/>
+                        <ComboBox x:Name="WristUpdate" SelectedIndex="0"  IsReadOnly="true" Margin="0,0,0,2"/>
+                        <ComboBox x:Name="GlovesUpdate" SelectedIndex="0"  IsReadOnly="true" Margin="0,0,0,2"/>
+                        <ComboBox x:Name="MainHandUpdate" SelectedIndex="0"  IsReadOnly="true" Margin="0,0,0,2" SelectionChanged="DisableOffHand_SelectionChange"/>
+                        <ComboBox x:Name="OffHandUpdate" SelectedIndex="0"  IsReadOnly="true" Margin="0,0,0,2"/>
+                    </WrapPanel>
+
+                    <TextBlock Text="Is the item owned ?" Margin="0,-10,0,0" FontSize="20" FontWeight="Bold" Foreground="White" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <WrapPanel x:Name="checkBoxItemsOwnedOne" Grid.Row="3" Grid.RowSpan="9" Grid.Column="2" VerticalAlignment="Top" HorizontalAlignment="Center" Orientation="Vertical" IsEnabled="False">
+                        <CheckBox Margin="0,0,0,9"/>
+                        <CheckBox Margin="0,0,0,9"/>
+                        <CheckBox Margin="0,0,0,9"/>
+                        <CheckBox Margin="0,0,0,9"/>
+                        <CheckBox Margin="0,0,0,9"/>
+                        <CheckBox Margin="0,0,0,9"/>
+                        <CheckBox Margin="0,0,0,9"/>
+                        <CheckBox Margin="0,0,0,9"/>
+                        <CheckBox Margin="0,0,0,9"/>
+                    </WrapPanel>
+
+                    <WrapPanel x:Name="checkBoxItemsOwnedTwo" Grid.Row="3" Grid.RowSpan="9" Grid.Column="3" VerticalAlignment="Top" HorizontalAlignment="Center" Orientation="Vertical" IsEnabled="False">
+                        <CheckBox Margin="0,0,0,9"/>
+                        <CheckBox Margin="0,0,0,9"/>
+                        <CheckBox Margin="0,0,0,9"/>
+                        <CheckBox Margin="0,0,0,9"/>
+                        <CheckBox Margin="0,0,0,9"/>
+                        <CheckBox Margin="0,0,0,9"/>
+                        <CheckBox Margin="0,0,0,9"/>
+                        <CheckBox Margin="0,0,0,9"/>
+                    </WrapPanel>
+
+                    <WrapPanel x:Name="rollTwoOfBISItems" Grid.Row="3" Grid.RowSpan="9" Grid.Column="4" Orientation="Vertical" IsEnabled="False">
+                        <ComboBox x:Name="BeltUpdate" SelectedIndex="0"  IsReadOnly="true" MinWidth="250" Margin="0,0,0,2"/>
+                        <ComboBox x:Name="LeggsUpdate" SelectedIndex="0"  IsReadOnly="true" Margin="0,0,0,2"/>
+                        <ComboBox x:Name="FeetUpdate" SelectedIndex="0"  IsReadOnly="true" Margin="0,0,0,2"/>
+                        <ComboBox x:Name="RingOneUpdate" SelectedIndex="0"  IsReadOnly="true" Margin="0,0,0,2"/>
+                        <ComboBox x:Name="RingTwoUpdate" SelectedIndex="0"  IsReadOnly="true" Margin="0,0,0,2"/>
+                        <ComboBox x:Name="TrinketOneUpdate" SelectedIndex="0"  IsReadOnly="true" Margin="0,0,0,2"/>
+                        <ComboBox x:Name="TrinketTwoUpdate" SelectedIndex="0"  IsReadOnly="true" Margin="0,0,0,2"/>
+                        <ComboBox x:Name="ThrowableUpdate" SelectedIndex="0"  IsReadOnly="true" Margin="0,0,0,2"/>
+                    </WrapPanel>
+
+
+                    <WrapPanel Grid.Row="3" Grid.RowSpan="9" Grid.Column="5" Orientation="Vertical" >
+                        <TextBlock Text="  : Belt" Foreground="White" MinWidth="150" TextAlignment="left" Margin="0,0,0,8"/>
+                        <TextBlock Text="  : Leggs" Foreground="White" MinWidth="150" TextAlignment="left" Margin="0,0,0,8"/>
+                        <TextBlock Text="  : Feet" Foreground="White" MinWidth="150" TextAlignment="left" Margin="0,0,0,8"/>
+                        <TextBlock Text="  : Rng slot 1" Foreground="White" MinWidth="150" TextAlignment="left" Margin="0,0,0,8"/>
+                        <TextBlock Text="  : Ring slot 2" Foreground="White" MinWidth="150" TextAlignment="left" Margin="0,0,0,8"/>
+                        <TextBlock Text="  : Trinket slot 1" Foreground="White" MinWidth="150" TextAlignment="left" Margin="0,0,0,8"/>
+                        <TextBlock Text="  : Trinket slot 2" Foreground="White" MinWidth="150" TextAlignment="left" Margin="0,0,0,8"/>
+                        <TextBlock Text="  : Throwable" Foreground="White" MinWidth="150" TextAlignment="left" Margin="0,0,0,8"/>
+                    </WrapPanel>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Edit Players">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="50"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="Name :" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0" TextWrapping="Wrap"/>
+                    <TextBlock Text="Class :" HorizontalAlignment="Right"  VerticalAlignment="Center" Grid.Row="2" Grid.Column="0" TextWrapping="Wrap"/>
+                    
+                    <TextBox x:Name="txtName" VerticalAlignment="Center" Grid.Column="1" Grid.Row="1" />
+                    <ComboBox x:Name="txtClass" VerticalAlignment="Center" Grid.Column="1" Grid.Row="2" />
+
+                    <Button x:Name="btnNew" Click="New_Entry" Content="New Entry" Grid.Column="1" Grid.Row="4"
+                        Width="75" Height="20" HorizontalAlignment="Center" />
+
+                    <DataGrid x:Name="ItemList" Grid.Column="3" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="4" 
+                              ScrollViewer.VerticalScrollBarVisibility="Visible" SelectionMode="Single"
+                              SelectionChanged="ItemList_SelectionChanged"
+                              IsReadOnly="True" GridLinesVisibility="Horizontal"
+                              AutoGenerateColumns="False" d:LayoutOverrides="Width, Height" Background="{x:Null}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Player Name" Width="200" Binding="{Binding playerName}"/>
+                            <DataGridTextColumn Header="Class" Width="100" Binding="{Binding playerClass}">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="Background" Value="{Binding playerColor}"></Setter>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    
+
+                    <Button x:Name="btnUpdate" Click="Update" Content="Create" Grid.Column="3" Grid.Row="6"
+                        Width="75" Height="20" HorizontalAlignment="Center" />
+                    <Button x:Name="btnDelete" Click="DeletePlayer" Content="Delete" Grid.Column="4" Grid.Row="6"
+                        Width="75" Height="20" HorizontalAlignment="Center" />
+                </Grid>
+            </TabItem>
+            <TabItem Header="Add/Edit Items">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition Width="250"/>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="500"/>
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <WrapPanel Grid.Row="0" Grid.RowSpan="11" Grid.Column="1" Orientation="Vertical" >
+                        <TextBlock Text="Write the Item Name:" Foreground="White" MinWidth="200" Margin="0,0,0,4"/>
+                        <TextBox x:Name="nameOfItem"  Margin="0,0,0,4"/>
+                        <TextBlock Text="Write the Item Rarity:" Foreground="White" MinWidth="200" Margin="0,0,0,4"/>
+                        <ComboBox x:Name="nameOfRarity"  Margin="0,0,0,4" SelectionChanged="Color_SelectionChanged">
+                            <ComboBoxItem Content="Common" Tag="0" Foreground="Green" />
+                            <ComboBoxItem Content="Rare" Tag="1" Foreground="Blue" />
+                            <ComboBoxItem Content="Epic" Tag="2" Foreground="Purple" />
+                            <ComboBoxItem Content="Legendary" Tag="3" Foreground="Orange" />
+                        </ComboBox>
+                        <TextBlock Text="Select the Raid Instance:" Foreground="White" MinWidth="200" Margin="0,0,0,4"/>
+                        <ComboBox x:Name="nameOfRaid"  SelectionChanged="ItemAddRaid_SelectionChange" Margin="0,0,0,4"/>
+                        <TextBlock Text="Select the Boss encounter:" Foreground="White" MinWidth="200" Margin="0,0,0,4"/>
+                        <ComboBox x:Name="nameOfBoss"  Margin="0,0,0,4"/>
+                        <TextBlock Text="Is the item a Weapon ?:" Foreground="White" MinWidth="200" Margin="0,0,0,4"/>
+                        <ComboBox x:Name="checkIfWeapon"  SelectionChanged="ItemAddIsWeapon_SelectionChange" Margin="0,0,0,4">
+                            <ComboBoxItem Content="Yes" Tag="0" />
+                            <ComboBoxItem Content="No" Tag="1" />
+                        </ComboBox>
+                        <TextBlock Text="Select item slot:"  Foreground="White" MinWidth="200" Margin="0,0,0,4"/>
+                        <ComboBox x:Name="nameOfPart" IsEnabled="False"  Margin="0,0,0,4"/>
+                        <TextBlock Text="Select type of the item:" Foreground="White" MinWidth="200" Margin="0,0,0,4"/>
+                        <ComboBox x:Name="nameOfType" IsEnabled="False"  Margin="0,0,0,4"/>
+                    </WrapPanel>
+
+                    <WrapPanel Grid.Row="11" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <Button Content="Create" IsDefault="True" Name="Create" Click="btn_Create" MinWidth="60" Margin="0,0,80,0"/>
+                        <Button Content="Clear" Name="Clear" Click="btn_Clear" MinWidth="60"/>
+                    </WrapPanel>
+
+                    <WrapPanel Grid.Row="1" Grid.Column="3">
+                        <ComboBox x:Name="typeOfItem" MinWidth="100" SelectionChanged="ItemListType_SelectionChanged">
+                            <ComboBoxItem Content="Weapon" Tag="0" />
+                            <ComboBoxItem Content="Armor" Tag="1" />
+                        </ComboBox>
+                        <ComboBox x:Name="rarityOfItem" IsReadOnly="True" MinWidth="100" SelectionChanged="Color_SelectionChanged">
+                            <ComboBoxItem Content="Common" Tag="0" Foreground="Green" />
+                            <ComboBoxItem Content="Rare" Tag="1" Foreground="Blue" />
+                            <ComboBoxItem Content="Epic" Tag="2" Foreground="Purple" />
+                            <ComboBoxItem Content="Legendary" Tag="3" Foreground="Orange" />
+                            <ComboBoxItem Content="Show All" Tag="4" Foreground="Black"/>
+                        </ComboBox>
+                        <ComboBox x:Name="itemType" Text="" MinWidth="100" IsReadOnly="true" IsEnabled="False" SelectionChanged="DiffItem_SelectionChanged"/>
+                        <ComboBox x:Name="itemPart" Text="" MinWidth="100" IsReadOnly="true" IsEnabled="False" SelectionChanged="DiffItem_SelectionChanged"/>
+
+                    </WrapPanel>
+                    <Image x:Name="showImage" Grid.Row="1" Grid.Column="2" Grid.RowSpan="10" Margin="0,0,10,0" Stretch="Uniform" StretchDirection="DownOnly"/>
+                    <Button x:Name="browseImage" Content="Browse" Grid.Row="11" Grid.Column="2" HorizontalAlignment="Center" MinWidth="75" Click="Browse_Image" />
+                    <Button x:Name="delateItem" Content="Delete" Grid.Row="11" Grid.Column="3" Width="75" HorizontalAlignment="Center" Click="DeleteItem" IsEnabled="False" />
+
+                    <DataGrid x:Name="ItemShowGrid" Grid.Row="2" Grid.Column="3" Grid.RowSpan="7"
+                              ScrollViewer.HorizontalScrollBarVisibility="Hidden" SelectionMode="Single"
+                              SelectionChanged="DeleteItem_SelectionChanged"
+                              IsReadOnly="True" GridLinesVisibility="Horizontal"
+                              AutoGenerateColumns="False" d:LayoutOverrides="Width, Height" Background="{x:Null}">
+                        <DataGrid.Columns>
+                            <DataGridTemplateColumn Header="Item Name"  Width="200" >
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding itemName}" Foreground="{Binding itemRarity}">
+                                            <TextBlock.ToolTip>
+                                                <Image Source="{Binding imageName}" 
+                                                       ToolTipService.InitialShowDelay="0" 
+                                                       ToolTipService.BetweenShowDelay="0">
+                                                </Image>
+                                            </TextBlock.ToolTip>
+                                        </TextBlock>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTextColumn Header="Item Type" Width="100" Binding="{Binding itemType}"/>
+                            <DataGridTextColumn Header="Drops from :" Width="200" Binding="{Binding bossName}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

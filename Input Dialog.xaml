@@ -1,0 +1,40 @@
+﻿<Window x:Class="ItemList.Input_Dialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ItemList"
+        mc:Ignorable="d" WindowStyle="ToolWindow"
+        Title="" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen"
+        ContentRendered="Window_ContentRendered">
+    <Grid Margin="15">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+        <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Label Name="lblQuestion" Grid.Column="1">Question:</Label>
+        <TextBox Name="txtAnswer" Grid.Column="1" Grid.Row="1" MinWidth="250">Answer</TextBox>
+
+        <Label Name="dropDown" Grid.Column="1" Grid.Row="2">Drop Down:</Label>
+        <ComboBox Name="choice" Grid.Column="1" Grid.Row="3" MinWidth="250"/>
+
+        <ComboBox Name="raidDel" Grid.Column="1" Grid.Row="4" MinWidth="250"/>
+
+        <ComboBox Name="bossDel" Grid.Column="1" Grid.Row="5" MinWidth="250"/>
+
+        <WrapPanel Grid.Row="6" Grid.ColumnSpan="2" HorizontalAlignment="Right" Margin="0,15,0,0">
+            <Button IsDefault="True" Name="btnDialogOk" Click="btnDialogOk_Click" MinWidth="60" Margin="0,0,10,0">_Ok</Button>
+            <Button IsCancel="True" Click="btnDialogCancel_Click" MinWidth="60">_Cancel</Button>
+        </WrapPanel>
+    </Grid>
+</Window>
